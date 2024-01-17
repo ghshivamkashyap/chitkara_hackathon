@@ -129,22 +129,7 @@ class _ScanScreenState extends State<ScanScreen> {
       // Handle QR scan error
     }
   }
-// pending work
-//   void checkout() async {
-//     final productIds = productMap.keys.toList();
-//     final apiUrl = 'https://shivam.techfestsliet.org/api/getbill';
-//
-//     try {
-//       print('Starting checkout...');
-//       // print('Request Body: $requestBody');
-//       print('All Pids: $allPids');
-//
-//     } catch (e) {
-//       // Show an error dialog or handle the error appropriately
-//       showErrorDialog(context, 'Error: $e');
-//     }
-//   }
-//   chatgpt check out fsn
+
   // Modify the checkout function
   void checkout() async {
     final apiUrl = 'https://hackwithmaitbackend-production.up.railway.app/api/getbill';
@@ -202,48 +187,6 @@ class _ScanScreenState extends State<ScanScreen> {
     }
   }
 
-// Add a function to display the bill details
-  // Modify the showBillDialog function
-
-  // void showBillDialog(BuildContext context, List<dynamic> products, dynamic totalPrice, dynamic mrp) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return Dialog(
-  //         shape: RoundedRectangleBorder(
-  //           borderRadius: BorderRadius.circular(16),
-  //         ),
-  //         child: Container(
-  //           padding: const EdgeInsets.all(16),
-  //           child: Column(
-  //             crossAxisAlignment: CrossAxisAlignment.start,
-  //             mainAxisSize: MainAxisSize.min,
-  //             children: [
-  //               Text(
-  //                 'Bill Details',
-  //                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-  //               ),
-  //               Divider(color: Colors.grey),
-  //               SizedBox(height: 8),
-  //               Text('Products:', style: TextStyle(fontWeight: FontWeight.bold)),
-  //               for (var product in products) Text('- $product'),
-  //               SizedBox(height: 16),
-  //               Text('Total Price Rs: ${totalPrice.toDouble().toStringAsFixed(2)}', style: TextStyle(fontWeight: FontWeight.bold)),
-  //               Text('MRP Rs: ${mrp.toDouble().toStringAsFixed(2)}', style: TextStyle(fontWeight: FontWeight.bold)),
-  //               SizedBox(height: 16),
-  //               ElevatedButton(
-  //                 onPressed: () {
-  //                   Navigator.of(context).pop();
-  //                 },
-  //                 child: Text('OK'),
-  //               ),
-  //             ],
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
   void showBillDialog(BuildContext context, List<dynamic> products, dynamic totalPrice, dynamic mrp, String qrCodeData) {
     showDialog(
       context: context,
@@ -301,48 +244,6 @@ class _ScanScreenState extends State<ScanScreen> {
 
 
   List<String> allPids = [];
-  // Future<void> getProductById(String productId) async {
-  //   final apiUrl = 'https://shivam.techfestsliet.org/api/getproductbyid/$productId';
-  //
-  //   try {
-  //     final response = await http.get(Uri.parse(apiUrl));
-  //
-  //     if (response.statusCode == 200) {
-  //       final jsonData = json.decode(response.body);
-  //
-  //       if (!jsonData['iserror']) {
-  //         final productData = jsonData['product'];
-  //         final productName = productData['name'];
-  //         final productCurrentPrice = productData['currprice'];
-  //         final pid = productData['pid'];
-  //
-  //         // Add the product details to your app state
-  //         final id = productData['_id'];
-  //         productMap[id] = {
-  //           'name': productName,
-  //           'price': productCurrentPrice,
-  //         };
-  //         productKeys.add(id);
-  //
-  //         // Optionally, you can update the cartItems list
-  //         setState(() {
-  //           cartItems.add(productName); // Assuming you want to add the product name to cartItems
-  //         });
-  //       } else {
-  //         // Show an error dialog or handle the error appropriately
-  //         showErrorDialog(context, 'Error: ${jsonData['message']}');
-  //       }
-  //     } else {
-  //       // Show an error dialog or handle the error appropriately
-  //       showErrorDialog(context, "Failed to get product by ID. Status code: ${response.statusCode}");
-  //     }
-  //   } catch (e) {
-  //     // Show an error dialog or handle the error appropriately
-  //     showErrorDialog(context, "Error: $e");
-  //   }
-  // }
-
-  // chatgpt code
   Future<void> getProductById(String productId) async {
     final apiUrl = 'https://hackwithmaitbackend-production.up.railway.app/api/getproductbyid/$productId';
 
