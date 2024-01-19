@@ -76,7 +76,14 @@ exports.getProductById = async (req, res) => {
 exports.addProduct = async (req, res) => {
   try {
     // const data = req.body;
-    const { pid, name, mrp, currprice } = req.params;
+    const { pid, name, mrp, currprice, store, image } = req.body;
+
+    console.log("maal is ------ ");
+    // console.log(pid);
+    // console.log(name);
+    console.log(store);
+    console.log(image);
+    // return
 
     // Validate data against the schema
     const product = new Products({
@@ -84,12 +91,9 @@ exports.addProduct = async (req, res) => {
       name: name,
       mrp: mrp,
       currprice: currprice,
+      store: store,
+      image: image,
     });
-        console.log(pid);
-    console.log(name);
-    console.log(pid);
-    console.log(currprice);
-    // return
 
     const validationError = product.validateSync();
 

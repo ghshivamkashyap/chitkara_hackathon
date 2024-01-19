@@ -7,6 +7,8 @@ const productSchema = new mongoose.Schema(
     name: { type: String, required: true },
     mrp: { type: Number, required: true },
     currprice: { type: Number, required: true },
+    store: { type: String, required: true },
+    image: { type: String, required: true },
   },
   { timestamps: true }
 );
