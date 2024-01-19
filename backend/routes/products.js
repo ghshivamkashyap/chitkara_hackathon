@@ -6,7 +6,7 @@ const { getProductById, addProduct, genrateBiill, securityCheck } = require("../
 // Use a route parameter for 'pid'
 router.get("/getproductbyid/:pid", getProductById);
 router.get("/security/:billId", securityCheck);
-router.get("/addproduct", addProduct);
+router.post("/addproduct", addProduct);
 router.post("/getbill", genrateBiill);
 
 
