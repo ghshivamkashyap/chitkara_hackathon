@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema(
     store: { type: String, required: true },
     image: { type: String, required: true },
   },
-  { timestamps: true }
+  { timestamps: true } //hello
 );
 
 module.exports = mongoose.model("Product", productSchema);
