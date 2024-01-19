@@ -132,7 +132,7 @@ class _ScanScreenState extends State<ScanScreen> {
 
   // Modify the checkout function
   void checkout() async {
-    final apiUrl = 'https://hackwithmaitbackend-production.up.railway.app/api/getbill';
+    final apiUrl = 'https://chitkara-tzcs.onrender.com/api/getbill';
 
     try {
       print('Starting checkout...');
@@ -245,9 +245,10 @@ class _ScanScreenState extends State<ScanScreen> {
 
   List<String> allPids = [];
   Future<void> getProductById(String productId) async {
-    final apiUrl = 'https://hackwithmaitbackend-production.up.railway.app/api/getproductbyid/$productId';
+    final apiUrl = 'https://chitkara-tzcs.onrender.com/api/getproductbyid/$productId';
 
     try {
+      print("$productId");
       final response = await http.get(Uri.parse(apiUrl));
 
       if (response.statusCode == 200) {

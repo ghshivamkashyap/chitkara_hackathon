@@ -126,7 +126,7 @@ class _SecurityCheckScreenState extends State<SecurityCheckScreen> {
   }
 
   Future<void> fetchApiData(String scannedValue) async {
-    final apiUrl = 'https://hackwithmaitbackend-production.up.railway.app/api/security/$scannedValue';
+    final apiUrl = 'https://chitkara-tzcs.onrender.com/api/security/$scannedValue';
 
     try {
       final response = await http.get(Uri.parse(apiUrl));
