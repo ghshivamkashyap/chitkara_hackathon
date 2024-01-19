@@ -8,6 +8,21 @@ class ProductGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Preprocess the products list to keep only one product per unique name with the lowest price
+    List<Map<String, dynamic>> uniqueProducts = [];
+
+    for (var product in products) {
+      var existingProduct = uniqueProducts.firstWhere(
+            (element) => element['name'] == product['name'],
+        orElse: () => {},
+      );
+
+      if (existingProduct.isEmpty || existingProduct['currprice'] > product['currprice']) {
+        uniqueProducts.remove(existingProduct);
+        uniqueProducts.add(product);
+      }
+    }
+
     return Container(
       padding: EdgeInsets.all(8.0),
       child: GridView.builder(
@@ -16,9 +31,9 @@ class ProductGridView extends StatelessWidget {
           crossAxisSpacing: 8.0,
           mainAxisSpacing: 8.0,
         ),
-        itemCount: products.length,
+        itemCount: uniqueProducts.length,
         itemBuilder: (context, index) {
-          final product = products[index];
+          final product = uniqueProducts[index];
           return GestureDetector(
             onTap: () {
               Navigator.push(
@@ -122,4 +137,3 @@ class ProductTile extends StatelessWidget {
     );
   }
 }
-
