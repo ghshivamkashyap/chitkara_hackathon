@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:http/http.dart' as http;
+import 'package:qr_reader_app/screens/reader.dart';
+import 'package:qr_reader_app/screens/security_check.dart';
 import 'dart:convert';
-
 import 'product_grid_view.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -45,8 +46,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   }
 
   Future<void> fetchProducts() async {
-    final response = await http
-        .get(Uri.parse('https://chitkara-tzcs.onrender.com/api/getallproducts'));
+    final response = await http.get(Uri.parse('https://chitkara-tzcs.onrender.com/api/getallproducts'));
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body)['data'];
       setState(() {
@@ -78,9 +78,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       child: Container(
                         padding: const EdgeInsets.all(12.0),
                         decoration: BoxDecoration(
-                          color: showWelcomeScreen
-                              ? Colors.blue
-                              : Colors.grey,
+                          color: showWelcomeScreen ? Colors.blue : Colors.grey,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Center(
@@ -105,9 +103,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       child: Container(
                         padding: const EdgeInsets.all(12.0),
                         decoration: BoxDecoration(
-                          color: showWelcomeScreen
-                              ? Colors.grey
-                              : Colors.blue,
+                          color: showWelcomeScreen ? Colors.grey : Colors.blue,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Center(
@@ -155,6 +151,34 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                           ),
                         ),
                       ],
+                    ),
+                    const SizedBox(
+                      height: 48.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => ScanScreen(),
+                        ));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.lightBlueAccent.shade400,
+                        padding: const EdgeInsets.all(20),
+                      ),
+                      child: const Text('🛒 Start Shopping'),
+                    ),
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => SecurityCheckScreen(),
+                        ));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueAccent.shade200,
+                        padding: const EdgeInsets.all(20),
+                      ),
+                      child: const Text('🔒 Receipt Verification'),
                     ),
                   ],
                 ),

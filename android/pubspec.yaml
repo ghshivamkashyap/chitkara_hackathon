@@ -40,6 +40,7 @@ dependencies:
   get:
   flutter_barcode_scanner:
   barcode_widget:
+  velocity_x: ^3.6.0
 
 dev_dependencies:
   flutter_test:

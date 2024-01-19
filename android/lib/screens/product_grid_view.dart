@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'product_details_page.dart';
 
 class ProductGridView extends StatelessWidget {
   final List<Map<String, dynamic>> products;
@@ -7,34 +8,51 @@ class ProductGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 8.0,
-        mainAxisSpacing: 8.0,
+    return Container(
+      padding: EdgeInsets.all(8.0),
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 8.0,
+          mainAxisSpacing: 8.0,
+        ),
+        itemCount: products.length,
+        itemBuilder: (context, index) {
+          final product = products[index];
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProductDetailsPage(
+                    image: product['image'],
+                    name: product['name'],
+                    mrp: product['mrp'],
+                    currPrice: product['currprice'],
+                  ),
+                ),
+              );
+            },
+            child: ProductTile(
+              image: product['image'],
+              name: product['name'],
+              mrp: product['mrp'],
+              currPrice: product['currprice'],
+            ),
+          );
+        },
       ),
-      itemCount: products.length,
-      padding: EdgeInsets.all(8.0), // Add padding to prevent overflow
-      itemBuilder: (context, index) {
-        final product = products[index];
-        return ProductCard(
-          image: product['image'],
-          name: product['name'],
-          mrp: product['mrp'],
-          currPrice: product['currprice'],
-        );
-      },
     );
   }
 }
 
-class ProductCard extends StatelessWidget {
+class ProductTile extends StatelessWidget {
   final String image;
   final String name;
   final int mrp;
   final int currPrice;
 
-  const ProductCard({
+  const ProductTile({
     Key? key,
     required this.image,
     required this.name,
@@ -50,10 +68,18 @@ class ProductCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 200.0, // Adjust the height as needed
-            child: Image.network(
-              image,
-              fit: BoxFit.cover,
+            height: 120.0,
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8.0),
+                topRight: Radius.circular(8.0),
+              ),
+              child: Center(
+                child: Image.network(
+                  image,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
           Padding(
@@ -65,6 +91,7 @@ class ProductCard extends StatelessWidget {
                   name,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
+                    fontSize: 16.0,
                   ),
                 ),
                 SizedBox(height: 4.0),
@@ -95,3 +122,4 @@ class ProductCard extends StatelessWidget {
     );
   }
 }
+
